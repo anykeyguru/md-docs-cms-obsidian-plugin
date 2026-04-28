@@ -1,0 +1,805 @@
+/* Docs CMS plugin — styles */
+
+/* ── Modal buttons ──────────────────────────────────────────────────────── */
+.docs-cms-modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.docs-cms-modal-buttons button {
+    box-shadow: none !important;
+}
+
+/* Plugin-injected buttons inherit Obsidian's CTA accent without the heavy shadow. */
+.docs-cms-modal-buttons .mod-cta,
+.docs-cms-tree-btn.mod-cta {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: none !important;
+}
+
+.docs-cms-modal-buttons .mod-cta:hover,
+.docs-cms-tree-btn.mod-cta:hover:not(:disabled) {
+    background: var(--interactive-accent-hover);
+    box-shadow: none !important;
+}
+
+.docs-cms-modal-buttons .mod-warning {
+    background: transparent;
+    color: var(--text-error);
+    border: 1px solid var(--text-error);
+    box-shadow: none !important;
+}
+
+.docs-cms-modal-buttons .mod-warning:hover {
+    background: var(--text-error);
+    color: var(--background-primary);
+    box-shadow: none !important;
+}
+
+/* ── Health view ────────────────────────────────────────────────────────── */
+.docs-cms-health {
+    padding: 12px;
+    font-size: 13px;
+}
+
+.docs-cms-health-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.docs-cms-health-header h3 {
+    margin: 0;
+}
+
+.docs-cms-health-file {
+    margin-top: 14px;
+}
+
+.docs-cms-health-file h4 {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.docs-cms-health-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.docs-cms-health-list li {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+    line-height: 1.4;
+    font-size: 12px;
+}
+
+.docs-cms-health-kind {
+    color: var(--text-muted);
+    font-family: var(--font-monospace);
+    font-size: 11px;
+    margin-right: 4px;
+}
+
+.docs-cms-health-link {
+    cursor: pointer;
+    color: var(--text-accent);
+    text-decoration: none;
+}
+
+.docs-cms-health-link:hover {
+    text-decoration: underline;
+}
+
+.docs-cms-health-target {
+    color: var(--text-error);
+    font-family: var(--font-monospace);
+    font-size: 12px;
+}
+
+.docs-cms-health-empty {
+    color: var(--text-success);
+    margin-top: 12px;
+}
+
+/* ── CMS Tree view ──────────────────────────────────────────────────────── */
+.docs-cms-tree {
+    padding: 8px;
+    font-size: 13px;
+}
+
+.docs-cms-tree-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+/*
+ * Toolbar buttons & selects — uniform 1px gray outline, no shadows.
+ * `!important` on `box-shadow` is needed because Obsidian's default button
+ * styling pushes an inset shadow via `--input-shadow` and a CTA shadow via
+ * `--button-shadow-cta` from selectors that beat ours otherwise.
+ */
+.docs-cms-select {
+    background: transparent;
+    color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    padding-right: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+                      linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 9px) 50%, calc(100% - 5px) 50%;
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.docs-cms-select:hover {
+    background-color: var(--background-modifier-hover);
+    box-shadow: none !important;
+}
+
+.docs-cms-tree-btn {
+    background: transparent;
+    color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: none !important;
+    border-radius: 4px;
+    padding: 2px 7px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+.docs-cms-tree-btn:hover:not(:disabled),
+.docs-cms-tree-btn:focus:not(:disabled),
+.docs-cms-tree-btn:active:not(:disabled) {
+    background: var(--background-modifier-hover);
+    box-shadow: none !important;
+}
+
+.docs-cms-tree-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Square icon buttons (+, ?, ↻) — equal width/height, centered glyph. */
+.docs-cms-tree-btn-icon {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* Help (`?`) sits at the far right of the toolbar. */
+.docs-cms-tree-btn-help {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.docs-cms-tree-btn-help:hover:not(:disabled) {
+    color: var(--text-normal);
+}
+
+/* ── Help modal ─────────────────────────────────────────────────────────── */
+.docs-cms-help-modal {
+    width: 760px;
+    max-width: 90vw;
+}
+
+.docs-cms-help-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.docs-cms-help-content h2 {
+    margin-top: 1.5em;
+    border-bottom: 1px solid var(--background-modifier-border);
+    padding-bottom: 4px;
+}
+
+.docs-cms-help-content h3 {
+    margin-top: 1em;
+}
+
+.docs-cms-help-content code {
+    font-size: 0.9em;
+}
+
+.docs-cms-help-content hr {
+    border: none;
+    border-top: 1px solid var(--background-modifier-border);
+    margin: 1.5em 0;
+}
+
+.docs-cms-tree-empty {
+    color: var(--text-muted);
+    margin: 6px 0 6px 12px;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* Top-level bucket sections — no left stripe; per-file stripes carry the git signal. */
+.docs-cms-tree-bucket {
+    margin: 8px 0 14px 0;
+    padding: 4px 0;
+}
+
+.docs-cms-tree-bucket > summary {
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 6px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.docs-cms-tree-bucket-icon {
+    margin-right: 4px;
+}
+
+.docs-cms-tree-section,
+.docs-cms-tree-chapter {
+    margin: 4px 0 4px 12px;
+}
+
+.docs-cms-tree-section > summary,
+.docs-cms-tree-chapter > summary {
+    cursor: pointer;
+    user-select: none;
+    padding: 2px 0;
+    font-weight: 600;
+}
+
+.docs-cms-tree-section > summary {
+    font-size: 13px;
+    color: var(--text-normal);
+}
+
+.docs-cms-tree-chapter > summary {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: 12px;
+}
+
+.docs-cms-tree-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 24px;
+}
+
+.docs-cms-tree-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 1px 6px 1px 12px; /* left-padding leaves room for the stripe */
+    line-height: 1.3;
+    border-bottom: 1px solid var(--background-modifier-border);
+    transition: background 0.1s ease;
+}
+
+.docs-cms-tree-page:last-child {
+    border-bottom: none;
+}
+
+.docs-cms-tree-page:hover {
+    background: var(--background-modifier-hover);
+}
+
+/*
+ * Per-file git status stripe — implemented as a pseudo-element with vertical
+ * insets so each row's stripe is visibly its own (not a continuous line bleeding
+ * into neighbours). Clean (committed) → green; dirty (uncommitted) → blue.
+ */
+.docs-cms-tree-page::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+    background: transparent;
+    border-radius: 0 2px 2px 0;
+    pointer-events: none;
+}
+
+.docs-cms-tree-page.git-clean::before {
+    background: var(--color-green, #2ea043);
+}
+
+.docs-cms-tree-page.git-dirty::before {
+    background: var(--color-blue, #2563eb);
+}
+
+.docs-cms-tree-page.docs-cms-tree-dragging {
+    opacity: 0.4;
+}
+
+.docs-cms-tree-page.docs-cms-tree-drop-target {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.docs-cms-tree-page.docs-cms-tree-drop-target .docs-cms-tree-link,
+.docs-cms-tree-page.docs-cms-tree-drop-target .docs-cms-tree-weight {
+    color: var(--text-on-accent);
+}
+
+.docs-cms-tree-weight {
+    color: var(--text-muted);
+    font-family: var(--font-monospace);
+    font-size: 10px;
+    min-width: 18px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.docs-cms-tree-link {
+    cursor: pointer;
+    color: var(--text-normal);
+    text-decoration: none;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.docs-cms-tree-link:hover {
+    color: var(--text-accent);
+}
+
+.docs-cms-tree-badge {
+    font-size: 9px;
+    padding: 0 4px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.docs-cms-tree-badge.status-draft {
+    background: var(--text-warning);
+    color: var(--background-primary);
+}
+
+.docs-cms-tree-badge.status-deprecated {
+    background: var(--text-muted);
+    color: var(--background-primary);
+}
+
+.docs-cms-tree-menu {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0 4px;
+    visibility: hidden;
+    flex-shrink: 0;
+}
+
+.docs-cms-tree-page:hover .docs-cms-tree-menu {
+    visibility: visible;
+}
+
+.docs-cms-tree-menu:hover {
+    color: var(--text-normal);
+}
+
+/* ── Commit toolbar button (accent fill, same outline as the rest) ─────── */
+.docs-cms-tree-btn-commit {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    font-weight: 500;
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: none !important;
+}
+
+.docs-cms-tree-btn-commit:hover:not(:disabled) {
+    background: var(--interactive-accent-hover);
+    box-shadow: none !important;
+}
+
+/* ── Commit panel (in CMS Tree view) ────────────────────────────────────── */
+.docs-cms-tree-commit {
+    padding: 8px;
+}
+
+.docs-cms-commit-toolbar {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.docs-cms-commit-summary {
+    margin: 8px 0 12px 0;
+    padding: 6px 8px;
+    background: var(--background-secondary);
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.docs-cms-commit-upstream {
+    color: var(--text-muted);
+}
+
+.docs-cms-commit-counts {
+    color: var(--text-normal);
+    font-family: var(--font-monospace);
+}
+
+.docs-cms-commit-changes {
+    margin-bottom: 14px;
+}
+
+.docs-cms-commit-changes h4 {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.docs-cms-commit-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 6px 0;
+    gap: 8px;
+}
+
+.docs-cms-commit-section-header .docs-cms-tree-btn {
+    font-size: 10px;
+    padding: 2px 6px;
+    color: var(--text-muted);
+}
+
+/* + / − selective-staging button shown on each file row */
+.docs-cms-stage-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    padding: 0;
+    margin-left: 4px;
+}
+
+.docs-cms-stage-btn:hover:not(:disabled) {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.docs-cms-stage-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.docs-cms-commit-group {
+    margin-bottom: 12px;
+}
+
+.docs-cms-commit-group h5 {
+    margin: 4px 0;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.docs-cms-commit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.docs-cms-commit-file {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.docs-cms-commit-file:hover {
+    background: var(--background-modifier-hover);
+}
+
+.docs-cms-commit-status {
+    font-family: var(--font-monospace);
+    font-size: 11px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+    border-radius: 2px;
+    padding: 1px 0;
+    font-weight: 700;
+}
+
+.docs-cms-commit-status.status-modified {
+    background: rgba(255, 180, 0, 0.2);
+    color: var(--text-warning);
+}
+
+.docs-cms-commit-status.status-added {
+    background: rgba(0, 200, 0, 0.2);
+    color: var(--text-success);
+}
+
+.docs-cms-commit-status.status-deleted {
+    background: rgba(220, 0, 0, 0.2);
+    color: var(--text-error);
+}
+
+.docs-cms-commit-status.status-renamed {
+    background: rgba(100, 100, 255, 0.2);
+    color: var(--text-accent);
+}
+
+.docs-cms-commit-status.status-untracked {
+    background: rgba(150, 150, 150, 0.2);
+    color: var(--text-muted);
+}
+
+.docs-cms-commit-link {
+    cursor: pointer;
+    color: var(--text-normal);
+    text-decoration: none;
+    font-family: var(--font-monospace);
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.docs-cms-commit-link:hover {
+    color: var(--text-accent);
+}
+
+.docs-cms-commit-message-block {
+    margin: 14px 0 8px 0;
+}
+
+.docs-cms-commit-message-block label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.docs-cms-commit-message {
+    width: 100%;
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    color: var(--text-normal);
+    padding: 6px 8px;
+    font-family: var(--font-monospace);
+    font-size: 12px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.docs-cms-commit-message:focus {
+    border-color: var(--interactive-accent);
+    outline: none;
+}
+
+.docs-cms-commit-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.docs-cms-warning {
+    color: var(--text-warning);
+    font-size: 12px;
+    padding: 6px 8px;
+    background: rgba(255, 180, 0, 0.1);
+    border-left: 3px solid var(--text-warning);
+    border-radius: 2px;
+}
+
+/* ── Translation matrix view ────────────────────────────────────────────── */
+.docs-cms-matrix {
+    padding: 16px;
+}
+
+.docs-cms-matrix-summary {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 8px 0 16px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.docs-cms-matrix-summary-lang {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.docs-cms-matrix-summary-label {
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.docs-cms-matrix-summary-count {
+    font-weight: 600;
+}
+
+.docs-cms-matrix-summary-detail {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.docs-cms-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.docs-cms-matrix-table th,
+.docs-cms-matrix-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--background-modifier-border);
+    text-align: left;
+}
+
+.docs-cms-matrix-table th {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.docs-cms-matrix-path {
+    font-family: var(--font-monospace);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.docs-cms-matrix-cell {
+    text-align: center;
+    width: 60px;
+}
+
+.docs-cms-matrix-cell.cell-public {
+    background: rgba(0, 200, 0, 0.08);
+}
+
+.docs-cms-matrix-cell.cell-draft {
+    background: rgba(255, 180, 0, 0.08);
+}
+
+.docs-cms-matrix-cell.cell-missing {
+    background: rgba(220, 0, 0, 0.04);
+}
+
+.docs-cms-matrix-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-normal);
+    font-size: 16px;
+}
+
+.docs-cms-matrix-link:hover {
+    color: var(--text-accent);
+}
+
+.docs-cms-matrix-create {
+    background: transparent;
+    border: 1px dashed var(--text-muted);
+    color: var(--text-muted);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.docs-cms-matrix-create:hover {
+    border-color: var(--text-accent);
+    color: var(--text-accent);
+}
+
+.docs-cms-matrix-stale {
+    color: var(--text-warning);
+    font-size: 12px;
+}
+
+/* ── Image picker modal ─────────────────────────────────────────────────── */
+.docs-cms-picker-search {
+    width: 100%;
+    padding: 6px 8px;
+    margin-bottom: 12px;
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    color: var(--text-normal);
+    font-size: 13px;
+}
+
+.docs-cms-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.docs-cms-picker-card {
+    cursor: pointer;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    padding: 4px;
+    background: var(--background-secondary);
+    text-align: center;
+    transition: border-color 0.1s ease;
+}
+
+.docs-cms-picker-card:hover {
+    border-color: var(--interactive-accent);
+}
+
+.docs-cms-picker-thumb {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    background: var(--background-primary);
+    border-radius: 3px;
+}
+
+.docs-cms-picker-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-family: var(--font-monospace);
+    font-size: 12px;
+}
+
+.docs-cms-picker-name {
+    font-size: 10px;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-muted);
+}

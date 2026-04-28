@@ -1,0 +1,10 @@
+{
+  "id": "docs-cms",
+  "name": "Docs CMS",
+  "version": "0.5.5",
+  "minAppVersion": "1.5.0",
+  "description": "Frontmatter editor, draft→public promotion, and link/embed health-check for the docs-as-code CMS.",
+  "author": "documentation maintainers",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,17 @@
+# Build artifacts
+node_modules/
+dist/
+main.js
+*.tsbuildinfo
+.eslintcache
+
+# Obsidian-managed plugin runtime data — written by Obsidian when settings change.
+# Keeping it out of the repo so the plugin doesn't ship one user's preferences.
+data.json
+
+# Editor / OS
+.DS_Store
+*.log
+.idea/
+.vscode/
+
