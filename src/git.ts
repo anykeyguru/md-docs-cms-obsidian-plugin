@@ -145,12 +145,31 @@ function classify(idx: string, work: string): GitFile['kind'] {
     return 'other';
 }
 
-/** Stage all listed files (handles deletes via `git add -A`-style flag). */
+/**
+ * Stage all listed files (handles deletes via `git add -A`-style flag).
+ *
+ * Falls back to `git rm --cached` if `git add` complains about a path being
+ * "beyond a symbolic link" — which happens when a tracked directory has been
+ * replaced with a symlink to an unrelated git repo (a real situation when
+ * extracting a plugin from one vault into its own repo). For deletions, the
+ * fallback fully resolves the user's intent; for additions through a symlink,
+ * git would never report them as changes anyway.
+ */
 export async function stagePaths(cwd: string, paths: string[]): Promise<void> {
     if (paths.length === 0) return;
-    // `git add -A` includes deletes; safer than `git add` when files have been removed.
-    // Pass paths after `--` to avoid pathspec ambiguity.
-    await runGitOk(cwd, ['add', '-A', '--', ...paths]);
+    const r = await runGit(cwd, ['add', '-A', '--', ...paths]);
+    if (r.exitCode === 0) return;
+
+    const combined = (r.stderr + r.stdout).toLowerCase();
+    if (combined.includes('beyond a symbolic link')) {
+        const lsFiles = await runGit(cwd, ['ls-files', '--', ...paths], 5_000);
+        const indexed = lsFiles.stdout.split('\n').map((s) => s.trim()).filter(Boolean);
+        if (indexed.length > 0) {
+            await runGitOk(cwd, ['rm', '--cached', '--quiet', '--', ...indexed]);
+        }
+        return;
+    }
+    throw new Error(`git add failed (exit ${r.exitCode}): ${(r.stderr || r.stdout).trim()}`);
 }
 
 /**
